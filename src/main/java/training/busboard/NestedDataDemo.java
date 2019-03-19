@@ -11,7 +11,9 @@ public class NestedDataDemo {
 
     public static void main(String[] args) {
         Client client = ClientBuilder.newBuilder().register(JacksonFeature.class).build();
-        Location response = client.target("https://api.postcodes.io/postcodes/SE20UL")
+        String postcode = "SE20UL";
+        Location response = client.target("https://api.postcodes.io/postcodes")
+                .path(postcode)
                 .request(MediaType.APPLICATION_JSON_TYPE)
                 .get(PostcodeResult.class)
                 .getResult();
